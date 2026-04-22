@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tầm nhìn & Sứ mệnh - FinZ Finance</title>
+    <link rel="icon" type="image/png" href="https://img.freepik.com/premium-vector/creative-initial-modern-minimalist-timeless-negative-space-monogram-logo-design_1172241-22719.jpg?semt=ais_hybrid&w=740&q=80">
+    
+    <link rel="stylesheet" href="../style.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#18959f',
+                        dark: '#126d75',
+                        light: '#f4f8f9'
+                    }
+                }
+            }
+        }
+    </script>
+      <style>
+        /* Nút 3 gạch (ẩn trên máy tính) */
+        .mobile-menu-icon {
+            display: none;
+            font-size: 26px;
+            cursor: pointer;
+            user-select: none;
+            color: #fff; /* Đảm bảo icon 3 gạch màu trắng */
+        }
+
+        @media screen and (max-width: 768px) {
+            /* Sắp xếp Header: Menu (trái) - Logo (giữa) - Đăng nhập (phải) */
+            .navbar {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px 15px;
+                position: relative;
+            }
+
+            .mobile-menu-icon {
+                display: block;
+                order: 1; /* Nằm góc trái */
+            }
+
+            .logo {
+                order: 2; /* Nằm ở giữa */
+            }
+
+            .auth-buttons {
+                order: 3; /* Nằm góc phải */
+            }
+
+            /* Thu nhỏ nút đăng nhập để không bị tràn màn hình */
+            .btn-login-trigger {
+                padding: 8px 10px;
+                font-size: 12px;
+            }
+
+            /* Ẩn thanh menu mặc định và thiết kế lại dạng thả xuống */
+            .nav-links {
+                display: none !important; /* Bắt buộc ẩn để đè lên style.css */
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #ffffff;
+                box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+                z-index: 9999; /* Đảm bảo luôn nổi trên cùng */
+                padding: 0;
+                margin: 0;
+            }
+
+            /* Class được thêm bằng JavaScript để hiện menu */
+            .nav-links.active {
+                display: flex !important;
+            }
+
+            .nav-item {
+                width: 100%;
+                padding: 15px 20px;
+                box-sizing: border-box;
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            /* FIX LỖI CHỮ TRẮNG: Ép chữ trong menu mobile thành màu đen */
+            .nav-title, 
+            .nav-item a {
+                color: #333333 !important; 
+                text-decoration: none;
+                display: block;
+            }
+
+            .nav-item .dropdown-menu {
+                position: static;
+                display: none;
+                flex-direction: column;
+                box-shadow: none;
+                padding-left: 15px;
+                margin-top: 10px;
+            }
+
+            .nav-item:hover .dropdown-menu,
+            .nav-item:active .dropdown-menu {
+                display: flex;
+            }
+            
+            .dropdown-menu a {
+                padding: 8px 0;
+                color: #555 !important;
+            }
+
+            /* Các phần khác: Hero, Services, Footer (chuyển thành 1 cột dọc) */
+            .hero-section {
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                padding: 20px;
+            }
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+            .hero-image {
+                width: 100%;
+                margin-top: 30px;
+            }
+            .slideshow-container img {
+                width: 100%;
+                height: auto;
+                border-radius: 10px;
+            }
+            .services-grid {
+                display: flex;
+                flex-direction: column;
+                padding: 20px;
+                gap: 20px;
+            }
+            .service-card {
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .footer-container {
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                padding: 20px;
+                gap: 25px;
+            }
+
+            /* Form Đăng nhập Mobile */
+            .auth-box {
+                display: flex;
+                flex-direction: column;
+                width: 90%;
+                max-width: 400px;
+                max-height: 90vh;
+                overflow-y: auto;
+            }
+            .auth-image-side {
+                display: none; /* Ẩn ảnh phong cảnh */
+            }
+            .auth-form-side {
+                width: 100%;
+                padding: 30px 20px;
+                box-sizing: border-box;
+            }
+        }
+    </style>
+
+    <script>
+        function toggleMobileMenu() {
+            var nav = document.getElementById("nav-links");
+            if (nav.classList.contains("active")) {
+                nav.classList.remove("active");
+            } else {
+                nav.classList.add("active");
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <div id="guest-ui">
+        
+        <header class="navbar">
+            <div class="mobile-menu-icon" onclick="toggleMobileMenu()">&#9776;</div>
+
+            <a href="../index.html" class="logo" style="text-decoration: none;">Fin<span>Z</span></a>
+            
+            <nav class="nav-links" id="nav-links">
+                <div class="nav-item">
+                    <span class="nav-title">Về chúng tôi <span class="arrow">▼</span></span>
+                    <div class="dropdown-menu">
+                        <a href="team.html">Đội ngũ sáng lập</a>
+                        <a href="mission.html">Tầm nhìn & Sứ mệnh</a>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <span class="nav-title">Dịch vụ <span class="arrow">▼</span></span>
+                    <div class="dropdown-menu">
+                        <a href="savings.html">Tài khoản tiết kiệm</a>
+                        <a href="credit.html">Thẻ tín dụng</a>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <span class="nav-title">Trợ giúp <span class="arrow">▼</span></span>
+                    <div class="dropdown-menu">
+                        <a href="questions.html">Câu hỏi thường gặp (FAQ)</a>
+                        <a href="security.html">Hướng dẫn bảo mật</a>
+                        <a href="helpcenter.html">Liên hệ tổng đài</a>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <a href="news.html" class="nav-title">Tin tức</a>
+                </div>
+            </nav>
+            
+            <div class="auth-buttons">
+                <button onclick="showLoginModal()" class="btn-login-trigger">Đăng ký | Đăng nhập</button>
+            </div>
+        </header>
+
+        <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 min-h-[60vh] max-w-6xl">
+            
+            <nav class="text-sm text-gray-500 mb-8 font-medium">
+                <a href="../index.html" class="hover:text-primary transition-colors">Trang chủ</a> 
+                <span class="mx-2">/</span> 
+                <a href="about.html" class="hover:text-primary transition-colors">Về chúng tôi</a>
+                <span class="mx-2">/</span> 
+                <span class="text-dark">Tầm nhìn & Sứ mệnh</span>
+            </nav>
+
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h1 class="text-4xl md:text-5xl font-extrabold text-dark mb-6 tracking-tight">Định hướng tương lai</h1>
+                <p class="text-lg text-gray-600 leading-relaxed">
+                    Tại FinZ, chúng tôi không chỉ tạo ra một ứng dụng quản lý tiền bạc. Chúng tôi xây dựng một người bạn đồng hành tin cậy, giúp bạn tự tin làm chủ mọi quyết định tài chính.
+                </p>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-8 mb-20">
+                <div class="flex-1 bg-white p-10 rounded-[2rem] shadow-sm border border-gray-100 hover:shadow-lg transition-shadow duration-300 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-primary opacity-5 rounded-bl-full transform group-hover:scale-110 transition-transform duration-500"></div>
+                    <div class="w-16 h-16 bg-primary/10 text-primary rounded-2xl flex items-center justify-center text-3xl mb-6">🚀</div>
+                    <h2 class="text-3xl font-bold text-dark mb-4">Sứ mệnh của FinZ</h2>
+                    <p class="text-gray-600 leading-relaxed text-lg">
+                        <strong>Đơn giản hóa tài chính cá nhân.</strong> FinZ cam kết xóa bỏ mọi rào cản phức tạp của dịch vụ ngân hàng truyền thống, cung cấp cho người Việt những công cụ quản lý dòng tiền minh bạch, thông minh và dễ dàng tiếp cận nhất.
+                    </p>
+                </div>
+
+                <div class="flex-1 bg-gradient-to-br from-primary to-dark p-10 rounded-[2rem] shadow-lg text-white relative overflow-hidden group">
+                    <div class="absolute -bottom-10 -right-10 w-48 h-48 bg-white opacity-10 rounded-full transform group-hover:scale-110 transition-transform duration-500"></div>
+                    <div class="w-16 h-16 bg-white/20 text-white rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-inner">🔭</div>
+                    <h2 class="text-3xl font-bold mb-4">Tầm nhìn chiến lược</h2>
+                    <p class="text-light opacity-90 leading-relaxed text-lg">
+                        Trở thành người bạn đồng hành tài chính không thể thiếu của <strong>50 triệu người dân Đông Nam Á</strong> vào năm 2030. FinZ đang vươn mình trở thành một hệ sinh thái tài chính số toàn diện.
+                    </p>
+                </div>
+            </div>
+
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-dark mb-4">Lời cam kết từ FinZ</h2>
+                    <div class="w-24 h-1 bg-primary mx-auto rounded-full"></div>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-[2rem] text-center shadow-sm border border-gray-50 hover:-translate-y-2 transition-transform duration-300">
+                        <div class="text-5xl mb-6">❤️</div>
+                        <h3 class="text-xl font-bold text-dark mb-3">Người dùng là trọng tâm</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">
+                            Mọi tính năng và dịch vụ đều xuất phát từ nhu cầu thực tế và phản hồi của người dùng.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-[2rem] text-center shadow-sm border border-gray-50 hover:-translate-y-2 transition-transform duration-300">
+                        <div class="text-5xl mb-6">💡</div>
+                        <h3 class="text-xl font-bold text-dark mb-3">Đổi mới không ngừng</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">
+                            Chúng tôi liên tục ứng dụng công nghệ AI để mang đến trải nghiệm thông minh và vượt trội nhất.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-[2rem] text-center shadow-sm border border-gray-50 hover:-translate-y-2 transition-transform duration-300">
+                        <div class="text-5xl mb-6">🤝</div>
+                        <h3 class="text-xl font-bold text-dark mb-3">Trách nhiệm xã hội</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">
+                            FinZ đầu tư vào các dự án giáo dục tài chính, giúp nâng cao nhận thức quản lý tiền cho thế hệ trẻ.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <footer class="main-footer">
+            <div class="footer-container">
+                <div class="footer-col brand-col">
+                    <h3>Fin<span>Z</span></h3>
+                    <p>Ứng dụng quản lý tài chính cá nhân hàng đầu. Giúp bạn theo dõi chi tiêu, lập ngân sách và hướng tới tự do tài chính.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Khám phá</h4>
+                    <a href="../index.html">Trang chủ</a>
+                    <a href="about.html">Về chúng tôi</a>
+                    <a href="services.html">Dịch vụ</a>
+                    <a href="news.html">Tin tức</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Hỗ trợ</h4>
+                    <a href="helpcenter.html">Trung tâm trợ giúp</a>
+                    <a href="security.html">Chính sách bảo mật</a>
+                    <a href="terms.html">Điều khoản sử dụng</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Liên hệ</h4>
+                    <p>📍 123 Đường Tự Do, TP.HCM</p>
+                    <p>📞 (+84) 909 123 456</p>
+                    <p>✉️ hotro@finz.vn</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 FinZ Finance. Thiết kế dành riêng cho bạn.</p>
+            </div>
+        </footer>
+    </div>
+
+    <div id="login-modal" class="auth-overlay">
+        <div class="auth-box">
+            <div class="auth-form-side">
+                <button class="btn-close-auth" onclick="hideLoginModal()">✕</button>
+                
+                <h2 id="auth-title">Đăng nhập</h2>
+                <p id="auth-subtitle" style="margin-bottom: 20px; color: #666;">Chào mừng bạn quay trở lại FinZ</p>
+
+                <div id="auth-message" style="display: none; padding: 12px; border-radius: 8px; margin-bottom: 15px; font-size: 14px; text-align: center; font-weight: 500;"></div>
+
+                <div class="auth-inputs">
+                    <input type="text" id="auth-username" placeholder="Tên đăng nhập">
+                    
+                    <div class="password-wrapper">
+                        <input type="password" id="auth-pass" placeholder="Mật khẩu">
+                    </div>
+                    
+                    <div class="password-wrapper" id="auth-confirm-pass-wrapper" style="display: none; margin-top: 15px;">
+                        <input type="password" id="auth-confirm-pass" placeholder="Xác nhận lại mật khẩu">
+                    </div>
+                </div>
+
+                <button class="btn-main-auth" id="auth-action-btn" onclick="handleAuthAction()">Đăng nhập</button>
+
+                <p class="auth-switch">
+                    <span id="auth-switch-text">Chưa có tài khoản?</span> 
+                    <a href="#" id="auth-switch-btn" onclick="toggleAuthMode()">Đăng ký ngay</a>
+                </p>
+
+                  
+            </div>
+
+            <div class="auth-image-side">
+                <img src="https://img.pikbest.com/origin/09/42/91/70cpIkbEsTgKj.jpg!w700wp" alt="Phong cảnh">
+            </div>
+        </div>
+    </div>
+
+    <script src="../index.js"></script>
+    <script src="../page-common.js"></script>
+</body>
+</html>
