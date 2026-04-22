@@ -1,0 +1,163 @@
+/* Nút 3 gạch (ẩn trên máy tính) */
+.mobile-menu-icon {
+    display: none;
+    font-size: 26px;
+    cursor: pointer;
+    user-select: none;
+    color: #fff;
+    /* Đảm bảo icon 3 gạch màu trắng */
+}
+
+@media screen and (max-width: 768px) {
+
+    /* Sắp xếp Header: Menu (trái) - Logo (giữa) - Đăng nhập (phải) */
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 15px;
+        position: relative;
+    }
+
+    .mobile-menu-icon {
+        display: block;
+        order: 1;
+        /* Nằm góc trái */
+    }
+
+    .logo {
+        order: 2;
+        /* Nằm ở giữa */
+    }
+
+    .auth-buttons {
+        order: 3;
+        /* Nằm góc phải */
+    }
+
+    /* Thu nhỏ nút đăng nhập để không bị tràn màn hình */
+    .btn-login-trigger {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+
+    /* Ẩn thanh menu mặc định và thiết kế lại dạng thả xuống */
+    .nav-links {
+        display: none !important;
+        /* Bắt buộc ẩn để đè lên style.css */
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #ffffff;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        z-index: 9999;
+        /* Đảm bảo luôn nổi trên cùng */
+        padding: 0;
+        margin: 0;
+    }
+
+    /* Class được thêm bằng JavaScript để hiện menu */
+    .nav-links.active {
+        display: flex !important;
+    }
+
+    .nav-item {
+        width: 100%;
+        padding: 15px 20px;
+        box-sizing: border-box;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    /* FIX LỖI CHỮ TRẮNG: Ép chữ trong menu mobile thành màu đen */
+    .nav-title,
+    .nav-item a {
+        color: #333333 !important;
+        text-decoration: none;
+        display: block;
+    }
+
+    .nav-item .dropdown-menu {
+        position: static;
+        display: none;
+        flex-direction: column;
+        box-shadow: none;
+        padding-left: 15px;
+        margin-top: 10px;
+    }
+
+    .nav-item:hover .dropdown-menu,
+    .nav-item:active .dropdown-menu {
+        display: flex;
+    }
+
+    .dropdown-menu a {
+        padding: 8px 0;
+        color: #555 !important;
+    }
+
+    /* Các phần khác: Hero, Services, Footer (chuyển thành 1 cột dọc) */
+    .hero-section {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero-image {
+        width: 100%;
+        margin-top: 30px;
+    }
+
+    .slideshow-container img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .services-grid {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .service-card {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .footer-container {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+        gap: 25px;
+    }
+
+    /* Form Đăng nhập Mobile */
+    .auth-box {
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        max-width: 400px;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .auth-image-side {
+        display: none;
+        /* Ẩn ảnh phong cảnh */
+    }
+
+    .auth-form-side {
+        width: 100%;
+        padding: 30px 20px;
+        box-sizing: border-box;
+    }
+}
